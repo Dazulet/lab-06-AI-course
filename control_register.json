@@ -1,0 +1,52 @@
+{
+  "harness_controls": [
+    "validate_input",
+    "blind",
+    "refuse",
+    "log",
+    "escalate"
+  ],
+  "format_problems": [],
+  "entries": [
+    {
+      "control": "validate_input",
+      "principle": "Robustness, security and safety",
+      "principle_source": "OECD Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449 (2019, revised 3 May 2024), Principle 1.4(a) (AI should function appropriately under normal use, foreseeable use or misuse); UNESCO Recommendation on the Ethics of Artificial Intelligence (adopted 23 November 2021), section III.2, para. 27 (safety and security). Ethical guidance, not law.",
+      "instrument": "Law of the Republic of Kazakhstan No. 230-VIII of 17 November 2025 'On Artificial Intelligence' (adilet.zan.kz/rus/docs/Z2500000230)",
+      "provision": "Art. 15(2)(1)-(2): owners and possessors must manage the risks of the AI system and ensure its safety and reliability, including protection against failures. Benchmark only, not binding here: EU AI Act (Reg. 2024/1689) Art. 15(5).",
+      "why_here": "Part 1 tested the agent only on clean profiles (0 of 400 replies unparseable), so nothing in the measurement covers impossible values, and in Part 4 the bare pipeline turned GPA 9.9 / exam -5 into an ordinary rejection; the check refuses such input before any model call."
+    },
+    {
+      "control": "blind",
+      "principle": "Fairness and non-discrimination",
+      "principle_source": "OECD Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449 (2019, revised 3 May 2024), Principle 1.2(a) (non-discrimination and equality, fairness); UNESCO Recommendation on the Ethics of Artificial Intelligence (adopted 23 November 2021), section III.2, paras. 28-30 (fairness and non-discrimination). Ethical guidance, not law.",
+      "instrument": "Law of the Republic of Kazakhstan No. 230-VIII of 17 November 2025 'On Artificial Intelligence' (adilet.zan.kz/rus/docs/Z2500000230); Constitution of the Republic of Kazakhstan of 15 March 2026 (in force from 1 July 2026, adilet.zan.kz/rus/docs/K2600000000); Law of the Republic of Kazakhstan No. 94-V of 21 May 2013 'On Personal Data and Their Protection', as amended to 14.09.2026 (adilet.zan.kz/rus/docs/Z1300000094)",
+      "provision": "AI Law Art. 6 (AI systems must exclude any discrimination by origin, sex, nationality, language and other circumstances); Constitution Art. 16(2); Personal Data Law Art. 7(9) (data excessive for the purpose must not be processed).",
+      "why_here": "Part 1 showed no attribute clear of its floor, but all 4 gender flips favoured the female-coded name (4/0, p = 0.125) and all 10 university pairs with different scores favoured the flagship (+2.5 points, sign p = 0.002); name and university are not merit fields, so the model is not shown them."
+    },
+    {
+      "control": "refuse",
+      "principle": "Respect for the rule of law and human rights: safeguards against use outside the intended purpose and against misuse (purpose limitation)",
+      "principle_source": "OECD Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449 (2019, revised 3 May 2024), Principle 1.2(b) (mechanisms and safeguards to address uses outside intended purpose, intentional or unintentional misuse); UNESCO Recommendation on the Ethics of Artificial Intelligence (adopted 23 November 2021), section III.2, paras. 25-26 (proportionality and do no harm). Ethical guidance, not law.",
+      "instrument": "Law of the Republic of Kazakhstan No. 94-V of 21 May 2013 'On Personal Data and Their Protection', as amended to 14.09.2026 (adilet.zan.kz/rus/docs/Z1300000094); Civil Code of the Republic of Kazakhstan (General Part) No. 268-XIII of 27 December 1994; Law of the Republic of Kazakhstan No. 230-VIII of 17 November 2025 'On Artificial Intelligence' (adilet.zan.kz/rus/docs/Z2500000230)",
+      "provision": "Personal Data Law Art. 7(1) (consent of the subject or the legal representative), Art. 7(8) (processing limited to specific, predetermined and lawful purposes), Art. 19-1(1) (automated processing that changes rights only with consent); Civil Code Art. 17(1) and 22(1) (full capacity at 18; minors aged 14-18 act with the consent of their representatives); AI Law Art. 15(2)(2) and Art. 17(3)(3) for the injection rule and the purpose check.",
+      "why_here": "Part 1 showed the bare pipeline screens whatever it is given, and in Part 4 it shortlisted a request to rank applicants by ethnicity and a name that was an instruction to the model; the refusal path stopped all five such requests with 0 model calls and 0 wrong refusals among the 400 clean applicants."
+    },
+    {
+      "control": "log",
+      "principle": "Accountability and traceability",
+      "principle_source": "OECD Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449 (2019, revised 3 May 2024), Principle 1.5(a)-(b) (traceability of datasets, processes and decisions to enable analysis and responses to inquiry); UNESCO Recommendation on the Ethics of Artificial Intelligence (adopted 23 November 2021), section III.2, paras. 42-43 (auditability and traceability). Ethical guidance, not law.",
+      "instrument": "Law of the Republic of Kazakhstan No. 94-V of 21 May 2013 'On Personal Data and Their Protection', as amended to 14.09.2026 (adilet.zan.kz/rus/docs/Z1300000094); Law of the Republic of Kazakhstan No. 230-VIII of 17 November 2025 'On Artificial Intelligence' (adilet.zan.kz/rus/docs/Z2500000230)",
+      "provision": "Personal Data Law Art. 19-1(2)-(3) (explain automated processing, consider an objection within three working days) and Art. 24(1)(1) (right to know purpose and methods); AI Law Art. 8(1)-(2) (constant control, responsibility for results), Art. 15(2)(3) (documentation) and Art. 16(1)(4)-(5) (explanation and the data a decision was based on). Benchmark only: EU AI Act Art. 12(1) and Art. 26(6).",
+      "why_here": "In Part 1 the bare pipeline kept no record, so the 8 flipped pairs and 44 rejections could only be explained by re-running the model; the log keeps one record per call (406 in the submitted run) with the input hash, fields shown and withheld, raw reply and reason code, so an objection can be answered."
+    },
+    {
+      "control": "escalate",
+      "principle": "Human oversight and determination",
+      "principle_source": "UNESCO Recommendation on the Ethics of Artificial Intelligence (adopted 23 November 2021), section III.2, paras. 35-36 (an AI system can never replace ultimate human responsibility); OECD Recommendation of the Council on Artificial Intelligence, OECD/LEGAL/0449 (2019, revised 3 May 2024), Principle 1.2(b) (capacity for human agency and oversight). Ethical guidance, not law.",
+      "instrument": "Law of the Republic of Kazakhstan No. 230-VIII of 17 November 2025 'On Artificial Intelligence' (adilet.zan.kz/rus/docs/Z2500000230); Law of the Republic of Kazakhstan No. 94-V of 21 May 2013 'On Personal Data and Their Protection', as amended to 14.09.2026 (adilet.zan.kz/rus/docs/Z1300000094)",
+      "provision": "AI Law Art. 8(1) (owner, possessor and user keep constant control over the AI system) and Art. 9 (human autonomy in decision-making); Personal Data Law Art. 19-1(2)-(3) (right to object to automated processing). Benchmark only: GDPR (Reg. 2016/679) Art. 22(3), EU AI Act Art. 14(4)(d).",
+      "why_here": "In Part 1 every one of the 8 flipped pairs had a member scored 40-50 and score 45 got both decisions, so the band (40, 50) sends to a person exactly the zone where irrelevant edits changed outcomes (38 of 400 = 9.5% in the harness run, against 27.3% planned)."
+    }
+  ]
+}
